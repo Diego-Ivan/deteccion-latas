@@ -20,8 +20,8 @@ def detector_objetos_oscuros(imagen, param_dict):
 
     hsv = cv2.cvtColor(imagen, cv2.COLOR_BGR2HSV)
 
-    lower_black = np.array([0, 0, 0])
-    upper_black = np.array([180, 255, 50])
+    lower_black = param_dict.get('lower_black', np.array([0, 0, 0], dtype=np.uint8))
+    upper_black = param_dict.get('upper_black', np.array([180, 255, 50], dtype=np.uint8))
 
     mask = cv2.inRange(hsv, lower_black, upper_black)
 

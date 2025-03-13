@@ -30,10 +30,10 @@ def choose_video():
 def __main__():
     parametros = {
         "min_area": 1000,
-        "lower_black": np.array([0, 0, 0]),
-        "upper_black": np.array([180, 255, 0]),
+        "lower_black": np.array([0, 0, 0], dtype=np.uint8),
+        "upper_black": np.array([180, 255, 50], dtype=np.uint8),
     }
-    detector = Detector(DetectorOscuroOtsu.detector_ostsu_con_objetos_oscuros, None, parametros)
+    detector = Detector(DetectorObjetosOscuros.detector_objetos_oscuros, None, parametros)
 
     # Open the video file
     cap = cv2.VideoCapture(choose_video())
