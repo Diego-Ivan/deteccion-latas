@@ -32,6 +32,8 @@ def __main__():
         "min_area": 1000,
         "lower_black": np.array([0, 0, 0], dtype=np.uint8),
         "upper_black": np.array([180, 255, 50], dtype=np.uint8),
+        "lower_blue": np.array([36, 167, 179], dtype=np.uint8),
+        "upper_blue": np.array([0, 149, 255], dtype=np.uint8)
     }
     detector = Detector(DetectorObjetosOscuros.detector_objetos_oscuros, None, parametros)
 

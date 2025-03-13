@@ -25,8 +25,8 @@ def detector_agua_hsv(imagen, params):
 
     hsv = cv2.cvtColor(imagen, cv2.COLOR_BGR2HSV)
 
-    lower_blue = params.get("lower_blue", np.array([36, 167, 179]))
-    upper_blue = params.get("upper_blue", np.array([0, 149, 255]))
+    lower_blue = params.get("lower_blue", np.array([36, 167, 179], dtype=np.uint8))
+    upper_blue = params.get("upper_blue", np.array([0, 149, 255], dtype=np.uint8))
 
     mascara = cv2.inRange(hsv, lower_blue, upper_blue)
 
