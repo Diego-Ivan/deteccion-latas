@@ -4,7 +4,7 @@
 # Universidad de las Américas Puebla
 
 from latas_template_matching.Detector import Detector
-from latas_template_matching import DetectorOtsu, DetectorTemplate, DetectorObjetosOscuros
+from latas_template_matching import DetectorOtsu, DetectorTemplate, DetectorObjetosOscuros, DetectorOscuroOtsu, DetectorAguaHSV
 
 import cv2
 import numpy as np
@@ -33,7 +33,7 @@ def __main__():
         "lower_black": np.array([0, 0, 0]),
         "upper_black": np.array([180, 255, 0]),
     }
-    detector = Detector(DetectorObjetosOscuros.detector_objetos_oscuros, parametros)
+    detector = Detector(DetectorOscuroOtsu.detector_ostsu_con_objetos_oscuros, None, parametros)
 
     # Open the video file
     cap = cv2.VideoCapture(choose_video())
@@ -51,7 +51,8 @@ def __main__():
         detections = detector.detectar_objetos(frame)
 
         # Iterate over each detection and draw the rectangle on the frame
-        for (x1, y1, x2, y2) in detections:
+        for (clase, x1, y1, x2, y2) in detections:
+            cv2.putText(frame, clase, (x1, y1), cv2.FONT_ITALIC, 1, (255, 255, 255))
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
 
         # Display the frame with detections
