@@ -32,13 +32,13 @@ def __main__():
         "min_area": 1000,
         "lower_black": np.array([0, 0, 0], dtype=np.uint8),
         "upper_black": np.array([180, 255, 50], dtype=np.uint8),
-        "lower_blue": np.array([36, 167, 179], dtype=np.uint8),
-        "upper_blue": np.array([0, 149, 255], dtype=np.uint8)
+        "lower_blue": np.array([30, 60, 120], dtype=np.uint8),
+        "upper_blue": np.array([144, 200, 255], dtype=np.uint8)
     }
-    detector = Detector(DetectorObjetosOscuros.detector_objetos_oscuros, None, parametros)
+    detector = Detector(DetectorObjetosOscuros.detector_objetos_oscuros, DetectorAguaHSV.detector_agua_hsv, parametros)
 
     # Open the video file
-    cap = cv2.VideoCapture(choose_video())
+    cap = cv2.VideoCapture("/home/diegoivan/Documentos/Programa de Honores/Template Matching/compressed/20250315_235359000_iOS.mp4")
 
     if not cap.isOpened():
         print("Error: Could not open video.")
@@ -54,7 +54,7 @@ def __main__():
 
         # Iterate over each detection and draw the rectangle on the frame
         for (clase, x1, y1, x2, y2) in detections:
-            cv2.putText(frame, clase, (x1, y1), cv2.FONT_ITALIC, 1, (255, 255, 255))
+            cv2.putText(frame, clase, (x2, y2), cv2.FONT_ITALIC, 1, (255, 255, 255))
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
 
         # Display the frame with detections
